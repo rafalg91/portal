@@ -1,0 +1,38 @@
+.button {
+  background-color: $secondary;
+  color: $white;
+  border-radius: gutter(10);
+  border: 1px solid $secondary;
+  padding: gutter(1) gutter(2.8);
+  transition: $transition;
+
+  &:focus {
+    outline: none !important;
+    box-shadow: none !important;
+    border: 1px solid $secondary;
+    color: $white;
+  }
+
+  &:hover {
+    background-color: darken($primary, 10);
+    border: 1px solid $primary;
+    color: $white;
+  }
+
+  &--border {
+    border: 1px solid $primary;
+    background-color: transparent;
+    color: $primary;
+
+    &:focus {
+      border: 1px solid $primary;
+      color: $primary;
+    }
+
+    &:hover {
+      border: 1px solid $primary;
+      background-color: $primary;
+      color: $white;
+    }
+  }
+}

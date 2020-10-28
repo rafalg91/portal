@@ -1,2 +1,24 @@
+// fonts
+@import url("https://fonts.googleapis.com/css?family=Poppins:200,400,500,600,700&display=swap&subset=latin-ext");
+@import '@fortawesome/fontawesome-free/scss/fontawesome.scss';
+@import '@fortawesome/fontawesome-free/scss/solid.scss';
+@import '@fortawesome/fontawesome-free/scss/brands.scss';
+
 // library
 @import '~bulma';
+
+//common
+@import "common/functions";
+@import "common/variables";
+@import "common/animations";
+@import "common/mixins";
+@import "common/helpers";
+@import "common/global";
+@import "common/typography";
+
+// components
+@import "components/button";
+@import "components/container";
+
+// layouts
+@import "layouts/header";

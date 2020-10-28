@@ -1,9 +1,9 @@
 import React from 'react'
 
-const Users = () => (
+const Contact = () => (
   <h2 className="title">
-    Users
+    Kontakt
   </h2>
 )
 
-export default Users
+export default Contact

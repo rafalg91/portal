@@ -34,6 +34,8 @@ const Register = () => {
       email: '',
       password: '',
     },
+    validateOnChange: false,
+    validateOnBlur: false,
     validate,
     onSubmit: (values, { resetForm }) => {
       console.log(values)
@@ -43,7 +45,7 @@ const Register = () => {
 
   return (
     <>
-      <h2 className="title is-5">Register</h2>
+      <h2 className="title is-5">Rejestracja</h2>
       <form onSubmit={formik.handleSubmit}>
         <div className="field">
           <label htmlFor="username" className="label">Username</label>

@@ -1,9 +1,9 @@
 import React from 'react'
 
-const Users = () => (
+const Home = () => (
   <h2 className="title">
-    Users
+    Home
   </h2>
 )
 
-export default Users
+export default Home

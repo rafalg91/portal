@@ -1,0 +1,42 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: gutter(10);
+
+  &__nav {
+    ul {
+      display: flex;
+      align-items: center;
+
+      li {
+        padding: gutter(1.2);
+
+        &.header__button {
+          padding: gutter(1) gutter(0.5);
+
+          &--first {
+            padding-left: gutter(6);
+          }
+        }
+      }
+    }
+  }
+
+  &__link {
+    color: $black;
+    padding: gutter(0.5);
+    font-size: 17px;
+    font-weight: $semi-bold;
+    transition: $transition;
+
+    &--active {
+      color: $primary;
+    }
+
+    &:hover {
+      color: $primary;
+      text-decoration: underline;
+    }
+  }
+}
