@@ -1,36 +1,43 @@
 import React from "react"
-import { useFormik } from 'formik';
+import { useFormik } from "formik"
 import classNames from "classnames/dedupe"
 
 const validate = (values) => {
-  const errors = {};
+  const errors = {}
 
-  if (/^ *$/.test(values.username)) {
-    errors.username = 'Required';
-  } else if (values.username.length < 3) {
-    errors.username = 'Must be at least 3 characters';
+  if (/^ *$/.test(values.name)) {
+    errors.name = "Required"
+  } else if (values.name.length < 3) {
+    errors.name = "Must be at least 3 characters"
   }
 
   if (!values.email) {
-    errors.email = 'Required';
+    errors.email = "Required"
   } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
-    errors.email = 'Invalid email address';
+    errors.email = "Invalid email address"
   }
 
   if (/^ *$/.test(values.password)) {
-    errors.password = 'Required';
+    errors.password = "Required"
   } else if (values.password.length < 6) {
-    errors.password = 'Must be at least 6 characters';
+    errors.password = "Must be at least 6 characters"
   }
 
-  return errors;
-};
+  return errors
+}
 
 const Register = () => {
+  const addUser = (data) => {
+    return fetch("/api/users/add", {
+      method: "POST",
+      body: JSON.stringify(data),
+      headers: { "Content-Type": "application/json" },
+    })
+  }
 
   const formik = useFormik({
     initialValues: {
-      username: '',
+      name: '',
       email: '',
       password: '',
     },
@@ -38,9 +45,9 @@ const Register = () => {
     validateOnBlur: false,
     validate,
     onSubmit: (values, { resetForm }) => {
-      console.log(values)
+      addUser(values)
       resetForm()
-    }
+    },
   })
 
   return (
@@ -48,51 +55,75 @@ const Register = () => {
       <h2 className="title is-5">Rejestracja</h2>
       <form onSubmit={formik.handleSubmit}>
         <div className="field">
-          <label htmlFor="username" className="label">Username</label>
+          <label htmlFor="name" className="label">
+            Nazwa uytkownika
+          </label>
           <div className="control">
             <input
-              name="username"
-              className={classNames('input', {'is-danger': formik.errors.username})}
-              placeholder="Username..."
+              name="name"
+              className={classNames("input", {
+                "is-danger": formik.errors.name,
+              })}
+              placeholder="name..."
               type="text"
               onChange={formik.handleChange}
-              value={formik.values.username}
+              value={formik.values.name}
             />
           </div>
-          {formik.errors.username ? <p className="help is-danger">{formik.errors.username}</p> : null}
+          {formik.errors.name ? (
+            <p className="help is-danger">{formik.errors.name}</p>
+          ) : null}
         </div>
         <div className="field">
-          <label htmlFor="email" className="label">Email</label>
+          <label htmlFor="email" className="label">
+            Adres e-mail
+          </label>
           <div className="control">
             <input
               name="email"
-              className={classNames('input', {'is-danger': formik.errors.email})}
+              className={classNames("input", {
+                "is-danger": formik.errors.email,
+              })}
               placeholder="Email..."
               type="email"
               onChange={formik.handleChange}
               value={formik.values.email}
             />
           </div>
-          {formik.errors.email ? <p className="help is-danger">{formik.errors.email}</p> : null}
+          {formik.errors.email ? (
+            <p className="help is-danger">{formik.errors.email}</p>
+          ) : null}
         </div>
         <div className="field">
-          <label htmlFor="email" className="label">Password</label>
+          <label htmlFor="email" className="label">
+            Hasło
+          </label>
           <div className="control">
             <input
               name="password"
-              className={classNames('input', {'is-danger': formik.errors.password})}
+              className={classNames("input", {
+                "is-danger": formik.errors.password,
+              })}
               placeholder="password..."
               type="password"
               onChange={formik.handleChange}
               value={formik.values.password}
             />
           </div>
-          {formik.errors.password ? <p className="help is-danger">{formik.errors.password}</p> : null}
+          {formik.errors.password ? (
+            <p className="help is-danger">{formik.errors.password}</p>
+          ) : null}
         </div>
         <div className="field">
           <div className="control mt-5">
-            <button type="submit" className={classNames('button is-primary', {'is-loading': formik.isSubmitting})} disabled={formik.isSubmitting}>
-              Register
+            <button
+              type="submit"
+              className={classNames("button", {
+                "is-loading": formik.isSubmitting,
+              })}
+              disabled={formik.isSubmitting}
+            >
+              Zarejestruj się
             </button>
           </div>
         </div>

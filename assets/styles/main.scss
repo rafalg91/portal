@@ -4,8 +4,10 @@
 @import '@fortawesome/fontawesome-free/scss/solid.scss';
 @import '@fortawesome/fontawesome-free/scss/brands.scss';
 
-// library
-@import '~bulma';
+// Bulma
+@import "bulma/sass/utilities/_all.sass";
+@import "bulma/sass/base/_all.sass";
+@import "bulma/sass/form/_all.sass";
 
 //common
 @import "common/functions";

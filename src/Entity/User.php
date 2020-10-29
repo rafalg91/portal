@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use JsonSerializable;
 use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -9,7 +10,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
  */
-class User implements UserInterface
+class User implements UserInterface, JsonSerializable
 {
     /**
      * @ORM\Id
@@ -35,9 +36,18 @@ class User implements UserInterface
     private $password;
 
     /**
-     * @ORM\Column(type="string", length=255, unique=true)
+     * @ORM\Column(type="string", length=255)
      */
-    private $username;
+    private $name;
+
+    public function jsonSerialize()
+    {
+        return array(
+            'id' => $this->id,
+            'email' => $this->email,
+            'password' => $this->password,
+        );
+    }
 
     public function getId(): ?int
     {
@@ -117,9 +127,14 @@ class User implements UserInterface
         // $this->plainPassword = null;
     }
 
-    public function setUsername(string $username): self
+    public function getName(): ?string
     {
-        $this->username = $username;
+        return $this->name;
+    }
+
+    public function setName(string $name): self
+    {
+        $this->name = $name;
 
         return $this;
     }
