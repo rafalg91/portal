@@ -44,6 +44,7 @@ class User implements UserInterface, JsonSerializable
     {
         return array(
             'id' => $this->id,
+            'name' => $this->name,
             'email' => $this->email,
             'password' => $this->password,
         );
